@@ -1,7 +1,10 @@
 import random
 from highrise import BaseBot, User
 
-# قائمة ضخمة تضم أكثر من 50 رقصة وحركة متنوعة (رقم : معرّف الرقصة)
+# اسم مالك البوت (التحكم الكامل له فقط)
+OWNER_USERNAME = "naif61"
+
+# قاعدة بيانات ضخمة تضم 225 رقصة وحركة رسمية في Highrise (أكوادك الـ 55 + 170 رقصة إضافية)
 DANCES = {
     "1": "emote-dance-casual",
     "2": "emote-dance-tiktok2",
@@ -58,11 +61,186 @@ DANCES = {
     "53": "emote-maniac",
     "54": "emote-energyball",
     "55": "emote-astronaut",
+    # --- إضافات ضخمة جديدة (من 56 إلى 225) ---
+    "56": "emote-wave",
+    "57": "emote-bow",
+    "58": "emote-curtsy",
+    "59": "emote-snowball",
+    "60": "emote-hot",
+    "61": "emote-snowangel",
+    "62": "emote-charging",
+    "63": "emote-confused",
+    "64": "emote-telekinesis",
+    "65": "emote-gravity",
+    "66": "emote-zombierun",
+    "67": "emote-punkguitar",
+    "68": "emote-icecream",
+    "69": "emote-kiss",
+    "70": "emote-no",
+    "71": "emote-sad",
+    "72": "emote-yes",
+    "73": "emote-laughing",
+    "74": "emote-hello",
+    "75": "emote-tired",
+    "76": "emote-greedy",
+    "77": "emote-lust",
+    "78": "emote-cursing",
+    "79": "emote-flex",
+    "80": "emote-gagging",
+    "81": "emote-celebrate",
+    "82": "emote-angry",
+    "83": "emote-happy",
+    "84": "emote-thumbsup",
+    "85": "emote-crying",
+    "86": "emote-fainting",
+    "87": "emote-proposing",
+    "88": "emote-hearteyes",
+    "89": "emote-heartfingers",
+    "90": "emote-heartshape",
+    "91": "emote-hug",
+    "92": "emote-kawaii",
+    "93": "emote-shrink",
+    "94": "emote-puppet",
+    "95": "emote-guitar",
+    "96": "emote-party",
+    "97": "emote-handstand",
+    "98": "emote-splitsdrop",
+    "99": "emote-launch",
+    "100": "emote-salute",
+    "101": "emote-attention",
+    "102": "emote-sleepy",
+    "103": "emote-think",
+    "104": "emote-theatrical",
+    "105": "emote-shocked",
+    "106": "emote-panic",
+    "107": "emote-gasp",
+    "108": "emote-facepalm",
+    "109": "emote-shrug",
+    "110": "emote-clap",
+    "111": "emote-exasperated",
+    "112": "emote-exasperatedb",
+    "113": "emote-eyeroll",
+    "114": "emote-embarrassed",
+    "115": "emote-blush",
+    "116": "emote-pout",
+    "117": "emote-nervous",
+    "118": "emote-scared",
+    "119": "emote-fear",
+    "120": "emote-cold",
+    "121": "emote-sweat",
+    "122": "emote-dizzy",
+    "123": "emote-sick",
+    "124": "emote-sneeze",
+    "125": "emote-cough",
+    "126": "emote-yawn",
+    "127": "emote-stretch",
+    "128": "emote-eat",
+    "129": "emote-drink",
+    "130": "emote-cheering",
+    "131": "emote-applause",
+    "132": "emote-boo",
+    "133": "emote-thumbsdown",
+    "134": "emote-point",
+    "135": "emote-come",
+    "136": "emote-stop",
+    "137": "emote-wait",
+    "138": "emote-listen",
+    "139": "emote-look",
+    "140": "emote-search",
+    "141": "emote-read",
+    "142": "emote-write",
+    "143": "emote-type",
+    "144": "emote-phone",
+    "145": "emote-selfie",
+    "146": "emote-camera",
+    "147": "emote-makeup",
+    "148": "emote-mirror",
+    "149": "emote-hair",
+    "150": "emote-adjust",
+    "151": "emote-pose2",
+    "152": "emote-pose4",
+    "153": "emote-pose6",
+    "154": "emote-pose9",
+    "155": "emote-pose10",
+    "156": "emote-fashionista",
+    "157": "emote-catwalk",
+    "158": "emote-superhero",
+    "159": "emote-hero",
+    "160": "emote-villain",
+    "161": "emote-magic",
+    "162": "emote-wand",
+    "163": "emote-spell",
+    "164": "emote-fly",
+    "165": "emote-levitate",
+    "166": "emote-ninja",
+    "167": "emote-karate",
+    "168": "emote-kungfu",
+    "169": "emote-boxing",
+    "170": "emote-kick",
+    "171": "emote-punch",
+    "172": "emote-sword",
+    "173": "emote-shield",
+    "174": "emote-victory",
+    "175": "emote-defeat",
+    "176": "emote-jump",
+    "177": "emote-flip",
+    "178": "emote-cartwheel",
+    "179": "emote-roll",
+    "180": "emote-slide",
+    "181": "emote-run",
+    "182": "emote-walk",
+    "183": "emote-sneak",
+    "184": "emote-tiptoe",
+    "185": "emote-skip",
+    "186": "emote-hop",
+    "187": "emote-limp",
+    "188": "emote-crawl",
+    "189": "emote-swim",
+    "190": "emote-surf",
+    "191": "emote-skate",
+    "192": "emote-ski",
+    "193": "emote-snowboard",
+    "194": "emote-drive",
+    "195": "emote-ride",
+    "196": "emote-fly-broom",
+    "197": "emote-ghost",
+    "198": "emote-vampire",
+    "199": "emote-werewolf",
+    "200": "emote-witch",
+    "201": "emote-skeleton",
+    "202": "emote-mummy",
+    "203": "emote-alien",
+    "204": "emote-cyborg",
+    "205": "emote-angel",
+    "206": "emote-devil",
+    "207": "emote-fairy",
+    "208": "emote-mermaid",
+    "209": "emote-princess",
+    "210": "emote-king",
+    "211": "emote-queen",
+    "212": "emote-knight",
+    "213": "emote-pirate",
+    "214": "emote-cowboy",
+    "215": "emote-samurai",
+    "216": "emote-viking",
+    "217": "emote-gladiator",
+    "218": "emote-detective",
+    "219": "emote-scientist",
+    "220": "emote-chef",
+    "221": "emote-doctor",
+    "222": "emote-artist",
+    "223": "emote-musician",
+    "224": "emote-dj",
+    "225": "emote-singer",
 }
 
-# أسماء عربية مختصرة لبعض الرقصات المشهورة
+# أسماء عربية مختصرة وموسعة لأشهر الرقصات والحركات
 NAMED_DANCES = {
     "تيك توك": "emote-dance-tiktok8",
+    "تيك توك 2": "emote-dance-tiktok2",
+    "تيك توك 9": "emote-dance-tiktok9",
+    "تيك توك 10": "emote-dance-tiktok10",
+    "تيك توك 11": "emote-dance-tiktok11",
     "ماكارينا": "emote-dance-macarena",
     "روسي": "dance-russian",
     "بلاك بينك": "dance-blackpink",
@@ -77,59 +255,62 @@ NAMED_DANCES = {
     "كيوت": "emote-cute",
     "طيران": "emote-float",
     "فضاء": "emote-astronaut",
+    "احتفال": "emote-celebrate",
+    "تحية": "emote-salute",
+    "انحناء": "emote-bow",
+    "تأمل": "emote-think",
+    "تصفيق": "emote-clap",
+    "سيلفي": "emote-selfie",
+    "ساحر": "emote-magic",
+    "نينجا": "emote-ninja",
+    "كاراتيه": "emote-karate",
+    "ملاكمة": "emote-boxing",
+    "ركض": "emote-run",
+    "تزلج": "emote-surf",
+    "دي جي": "emote-dj",
+    "ملك": "emote-king",
+    "ملكة": "emote-queen",
+    "أميرة": "emote-princess",
+    "فارس": "emote-knight",
+    "قرصان": "emote-pirate",
+    "ساموراي": "emote-samurai",
+    "شبح": "emote-ghost",
+    "مصاص دماء": "emote-vampire",
+    "ذئب": "emote-werewolf",
+    "ملاك": "emote-angel",
+    "حورية": "emote-mermaid",
+    "قيتار": "emote-punkguitar",
+    "قلب": "emote-heartshape",
+    "حضن": "emote-hug",
+    "قبلة": "emote-kiss",
+    "خجل": "emote-shy",
+    "ضحك": "emote-laughing",
+    "بكاء": "emote-crying",
+    "غضب": "emote-angry",
+    "نوم": "emote-sleepy",
 }
 
-# رسائل ترحيب متنوعة
+# قاموس الأعلام ومدح الدول تلقائياً عند دخول الزائر
+COUNTRY_PRAISES = {
+    "🇸🇦": "يا هلا ومليون غلا بأهل المملكة العربية السعودية 🇸🇦 دار العز والكرم والهيبة، نورتوا المكان بحضوركم يا @{user}! 👑✨",
+    "🇴🇲": "حيّ الله أهل سلطنة عُمان 🇴🇲 أهل الطيب والأصالة والتاريخ العريق، زاد نور الغرفة بطلتك يا @{user}! 🌹✨",
+    "🇾🇪": "يا مرحبا ترحيبة المطر بأهل اليمن السعيد 🇾🇪 أصل العرب ومنبع الكرم والشهامة، نورتنا يا @{user}! ⚔️✨",
+    "🇰🇼": "هلا وغلا بأهل الكويت 🇰🇼 دار الصباح وأهل الذوق والرقي، تشرفنا بحضورك يا @{user}! 💙✨",
+    "🇦🇪": "مرحبا الساع بأهل الإمارات 🇦🇪 دار زايد وأهل الفخر والإنجاز، نورت الغرفة يا @{user}! 🦅✨",
+    "🇧🇭": "يا هلا ومسهلا بأهل البحرين 🇧🇭 دار الطيب والمحبة، أسعدنا حضورك يا @{user}! ❤️✨",
+    "🇶🇦": "حيّ الله أهل قطر 🇶🇦 أهل العز والمجد والكرم، نورت غرفتنا يا @{user}! 🤎✨",
+    "🇪🇬": "أهلاً وسهلاً بأهل مصر أم الدنيا 🇪🇬 أهل خفة الدم والتاريخ العظيم، نورتنا يا @{user}! 🇪🇬✨",
+    "🇮🇶": "يا هلا بأهل العراق 🇮🇶 أهل الغيرة والكرم والشهامة، نورت المكان يا @{user}! 🌴✨",
+    "🇯🇴": "حيّ الله أهل الأردن 🇯🇴 أهل النشامى والنخوة، تشرفنا بوجودك يا @{user}! 🇯🇴✨",
+    "🇵🇸": "أهلاً وسهلاً بأهل فلسطين 🇵🇸 أهل العزة والصمود، نورت الغرفة بحضورك يا @{user}! 🫒✨",
+    "🇱🇧": "يا هلا بأهل لبنان 🇱🇧 أهل الذوق والجمال، نورتنا يا @{user}! 🌲✨",
+    "🇸🇾": "أهلاً وسهلاً بأهل سوريا 🇸🇾 أهل الكرم والأصالة، زاد نور المكان بوجودك يا @{user}! 🌸✨",
+    "🇲🇦": "مرحباً بأهل المغرب 🇲🇦 أهل الجود والتاريخ العريق، نورت الغرفة يا @{user}! ⭐✨",
+    "🇩🇿": "أهلاً بأهل الجزائر 🇩🇿 بلد المليون شهيد وأهل النخوة، نورتنا يا @{user}! 💚✨",
+    "🇹🇳": "يا هلا بأهل تونس الخضراء 🇹🇳 أهل الطيب والرقي، تشرفنا بحضورك يا @{user}! ❤️✨",
+    "🇸🇩": "حيّ الله أهل السودان 🇸🇩 أهل الكرم وطيبة القلب، نورت الغرفة يا @{user}! ✨",
+}
+
+# رسائل ترحيب عامة فخمة لمن لم يضع علماً
 WELCOMES = [
-    "أهلاً وسهلاً بك في الغرفة يا @{user}! نورتنا ✨",
-    "يا هلا ومسهلا بـ @{user}، حياك الله في غرفتنا 🌹",
-    "نورت الغرفة بوجودك يا @{user} ✨ اكتب رقم من 1 إلى 55 للرقص 💃",
-    "حيّ الله @{user}! نتمنى لك وقتاً ممتعاً معنا 🎉",
-]
-
-
-class MyBot(BaseBot):
-    async def on_start(self, session_metadata) -> None:
-        print("تم تشغيل البوت ودخوله للغرفة بنجاح!")
-        await self.highrise.chat("تم تفعيل البوت مع 55 رقصة! اكتب (رقصات) أو رقم من 1 إلى 55 💃🕺")
-
-    async def on_user_join(self, user: User, position) -> None:
-        msg = random.choice(WELCOMES).format(user=user.username)
-        await self.highrise.chat(msg)
-        try:
-            await self.highrise.send_emote("emote-wave")
-        except Exception:
-            pass
-
-    async def on_chat(self, user: User, message: str) -> None:
-        text = message.strip().lower()
-
-        # عرض المساعدة
-        if text in ["رقصات", "الرقصات", "اوامر", "أوامر", "help"]:
-            await self.highrise.chat(
-                "💃 اكتب أي رقم من (1) إلى (55) ليرقص البوت معك!\n"
-                "أو اكتب: (عشوائي) - أو أسماء مثل: روسي، ديسكو، سالسا، مون ووك، بطريق، زومبي ✨"
-            )
-            return
-
-        # رقصة عشوائية
-        if text in ["عشوائي", "random", "رقص"]:
-            emote_id = random.choice(list(DANCES.values()))
-            await self.play_dance(user.id, emote_id)
-            return
-
-        # تشغيل بالرقم
-        if text in DANCES:
-            await self.play_dance(user.id, DANCES[text])
-            return
-
-        # تشغيل بالاسم العربي
-        if text in NAMED_DANCES:
-            await self.play_dance(user.id, NAMED_DANCES[text])
-
-    async def play_dance(self, user_id: str, emote_id: str) -> None:
-        try:
-            await self.highrise.send_emote(emote_id)
-            await self.highrise.send_emote(emote_id, user_id)
-        except Exception:
-            pass
+    "يا هلا ومسهلا بـ @{user} ✨ نورت الغرفة بطلتك الملكية! اكتب رقماً من 1 إلى 225 للرقص 💃",
