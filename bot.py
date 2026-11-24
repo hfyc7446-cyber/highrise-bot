@@ -157,7 +157,7 @@ class MyBot(BaseBot):
     
             await self.highrise.chat(f"يا هلا @{user.username} نورت الغرفة!")
         async def on_chat(self, user: User, message: str) -> None:
-        msg = message.strip()
+           msg = message.strip()
         if msg == "رقصات":
             await self.highrise.chat("💃 اكتب أي رقم من 1 إلى 225، أو اسم الرقصة مثل: روسي، سالسا، مون ووك، تيك توك!")
         elif msg in DANCES:
