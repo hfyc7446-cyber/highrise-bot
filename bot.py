@@ -156,11 +156,17 @@ class MyBot(BaseBot):
         else:
     
             await self.highrise.chat(f"يا هلا @{user.username} نورت الغرفة!")
-    async def on_chat(self, user: User, message: str) -> None:
+        async def on_chat(self, user: User, message: str) -> None:
         msg = message.strip()
         if msg == "رقصات":
             await self.highrise.chat("💃 اكتب أي رقم من 1 إلى 225، أو اسم الرقصة مثل: روسي، سالسا، مون ووك، تيك توك!")
         elif msg in DANCES:
-            await self.highrise.send_emote(DANCES[msg], user.id)
+            try:
+                await self.highrise.send_emote(DANCES[msg], user.id)
+            except Exception:
+                await self.highrise.chat("⚠️ هذه الرقصة غير متاحة، جرب رقماً آخر!")
         elif msg in NAMED_DANCES:
-            await self.highrise.send_emote(NAMED_DANCES[msg], user.id)
+            try:
+                await self.highrise.send_emote(NAMED_DANCES[msg], user.id)
+            except Exception:
+                await self.highrise.chat("⚠️ هذه الرقصة غير متاحة، جرب اسماً آخر!")
